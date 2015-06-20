@@ -307,11 +307,13 @@ def rst_add_mathjax(article):
     if 'class="math"' in article._content:
         article._content += "<script type='text/javascript'>%s</script>" % rst_add_mathjax.mathjax_script
 
-def parse_articles(article_generator):
-    """Adds mathjax script to RST and processes summaries"""
+def massage_content(content_generators):
+    """Adds mathjax script to RST to articles and processes summaries"""
+    
+    article_generator, pages_generator, static_generator = content_generators
 
+    # We process articles here; we ignore pages for some reason.
     for article in article_generator.articles:
-        
         rst_add_mathjax(article)
 
         if process_summary.mathjax_script is not None:
@@ -320,4 +322,4 @@ def parse_articles(article_generator):
 def register():
     """Plugin registration"""
     signals.initialized.connect(pelican_init)
-    signals.article_generator_finalized.connect(parse_articles)
+    signals.all_generators_finalized.connect(massage_content)
