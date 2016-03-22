@@ -65,13 +65,13 @@ def process_settings(pelicanobj):
     mathjax_settings['color'] = 'inherit'  # controls color math is rendered in
     mathjax_settings['linebreak_automatic'] = 'false'  # Set to false by default for performance reasons (see http://docs.mathjax.org/en/latest/output.html#automatic-line-breaking)
     mathjax_settings['tex_extensions'] = ''  # latex extensions that can be embedded inside mathjax (see http://docs.mathjax.org/en/latest/tex.html#tex-and-latex-extensions)
+    mathjax_settings['local_configuration'] = "''" # Allows the injection of custom javascript config, handy for site-wide macro definition. Note this URL needs to be fully qualified and the file needs a very specific format https://docs.mathjax.org/en/v2.5-latest/configuration.html#using-a-local-configuration-file-with-the-cdn
     mathjax_settings['responsive'] = 'false'  # Tries to make displayed math responsive
     mathjax_settings['responsive_break'] = '768'  # The break point at which it math is responsively aligned (in pixels)
     mathjax_settings['mathjax_font'] = 'default'  # forces mathjax to use the specified font.
     mathjax_settings['process_summary'] = BeautifulSoup is not None  # will fix up summaries if math is cut off. Requires beautiful soup
     mathjax_settings['force_tls'] = 'false'  # will force mathjax to be served by https - if set as False, it will only use https if site is served using https
     mathjax_settings['message_style'] = 'normal'  # This value controls the verbosity of the messages in the lower left-hand corner. Set it to "none" to eliminate all messages
-
     # Source for MathJax
     mathjax_settings['source'] = "'//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'"
 
@@ -146,6 +146,16 @@ def process_settings(pelicanobj):
 
         if key == 'linebreak_automatic' and isinstance(value, bool):
             mathjax_settings[key] = 'true' if value else 'false'
+
+        if key == 'local_configuration':
+            try:
+                typeVal = isinstance(value, basestring)
+            except NameError:
+                typeVal = isinstance(value, str)
+            if not typeVal:
+                continue
+
+            mathjax_settings[key] = "',{}'".format(value)
 
         if key == 'process_summary' and isinstance(value, bool):
             if value and BeautifulSoup is None:

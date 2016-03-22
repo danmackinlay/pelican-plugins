@@ -86,6 +86,7 @@ rendering LaTex. If set to `'Tex'`, then the TeX code is used as the preview
  * `linebreak_automatic`: [boolean] If set, Mathjax will try to *intelligently* break up displayed math
 (Note: It will not work for inline math). This is very useful for a responsive site. It
 is turned off by default due to it potentially being CPU expensive. **Default Value**: `False`
+ * `local_configuration`: [string] the path to a [local configuration override](https://docs.mathjax.org/en/v2.5-latest/configuration.html#using-a-local-configuration-file-with-the-cdn) Note this URL needs to be fully qualified and the file needs a very specific format.
  * `tex_extensions`: [list] a list of [latex extensions](http://docs.mathjax.org/en/latest/tex.html#tex-and-latex-extensions)
 accepted by mathjax. **Default Value**: `[]` (empty list)
  * `responsive`: [boolean] tries to make displayed math render responsively. It does by determining if the width
