@@ -99,7 +99,7 @@ Requires [BeautifulSoup4](http://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 **Default Value**: `False`. NB this setting is temporarily disabled, and https is always used.
  * `message_style`: [string] This value controls the verbosity of the messages in the lower left-hand corner. Set it to `None` to eliminate all messages.
 **Default Value**: normal
- * `macros`: [dictionary] Defines a [set of macros](https://docs.mathjax.org/en/v2.5-latest/tex.html#defining-tex-macros) to be used on all pages. Note that the syntax here is special MathJaX javascript syntax, and that backslashes will need to be double-escaped are also escape characters in python. So if you put in your configuration, `'macros': {"bb": ["{\\\\mathbb #1}", 1]}`, in a post you can now write `${\bb N }_0$` to get the equivalent of LaTeX `\mathbb{N}_0`.
+ * `macros`: [dictionary] Defines a [set of macros](https://docs.mathjax.org/en/v2.5-latest/tex.html#defining-tex-macros) to be used on all pages. Note  backslashes will need to be escaped as they are escape characters in python and javascript. So, if you put in your configuration, `'macros': {"bb": ["{\\mathbb #1}", 1]}`, in a post you can now write `${\bb N }_0$` to get the equivalent of LaTeX `\mathbb{N}_0`.
 
 #### Settings Examples
 Make math render in blue and displaymath align to the left:

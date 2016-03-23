@@ -12,6 +12,7 @@
     window.MathJax = {
         config: ["MMLorHTML.js"],
         TeX: {
+            Macros: {{macros|json}},
             extensions: {{tex_extensions|json}},
             equationNumbers: { autoNumber: 'AMS' } },
         jax: ['input/TeX','input/MathML','output/HTML-CSS'],
