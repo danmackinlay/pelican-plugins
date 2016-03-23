@@ -96,9 +96,10 @@ when setting `responsive_align` to `True`. **Default Value**: 768
  * `process_summary`: [boolean] ensures math will render in summaries and fixes math in that were cut off.
 Requires [BeautifulSoup4](http://www.crummy.com/software/BeautifulSoup/bs4/doc/) be installed. **Default Value**: `True`
  * `force_tls`: [boolean] forces mathjax script to load from cdn using https. If set to false, will use document.location.protocol
-**Default Value**: `False`
+**Default Value**: `False`. NB this setting is temporarily disabled, and https is always used.
  * `message_style`: [string] This value controls the verbosity of the messages in the lower left-hand corner. Set it to `None` to eliminate all messages.
 **Default Value**: normal
+ * `macros`: [dictionary] Defines a [set of macros](https://docs.mathjax.org/en/v2.5-latest/tex.html#defining-tex-macros) to be used on all pages. Note that the syntax here is special MathJaX javascript syntax, and that backslashes will need to be double-escaped are also escape characters in python. So if you put in your configuration, `'macros': {"bb": ["{\\\\mathbb #1}", 1]}`, in a post you can now write `${\bb N }_0$` to get the equivalent of LaTeX `\mathbb{N}_0`.
 
 #### Settings Examples
 Make math render in blue and displaymath align to the left:

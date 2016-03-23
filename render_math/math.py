@@ -80,6 +80,7 @@ def process_settings(pelicanobj):
     mathjax_settings['process_summary'] = BeautifulSoup is not None  # will fix up summaries if math is cut off. Requires beautiful soup
     # mathjax_settings['force_tls'] = False  # will force mathjax to be served by https - if set as False, it will only use https if site is served using https
     mathjax_settings['message_style'] = 'normal'  # This value controls the verbosity of the messages in the lower left-hand corner. Set it to "none" to eliminate all messages
+    mathjax_settings['macros'] = {}  # This value defines TeX macros using javascript https://docs.mathjax.org/en/v2.5-latest/tex.html#defining-tex-macros
 
     # Source for MathJax
     # TODO: reimplement force_tls setting
@@ -197,6 +198,18 @@ def process_settings(pelicanobj):
                 value = 'default'
 
             mathjax_settings[key] = value
+        
+        # Full validation of the macros dict would be tedious; It needs
+        # to be a dictionary with string keys and string or
+        # list-of-string-and-single-digit-integer values
+        # and even then you are not guaranteed it is
+        # a valid macro without running it.
+        # Since this is a feature for advanced users,
+        # we rely on those advanced users to use their brains.
+        if key == 'macros' and isinstance(value, dict):
+            mathjax_settings[key] = value
+            #More natural for the template, json.dumps(value)
+        
 
     return mathjax_settings
 
