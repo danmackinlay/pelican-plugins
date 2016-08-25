@@ -100,6 +100,8 @@ GitHub activity           On the template side, you just have to iterate over th
 
 Global license            Allows you to define a ``LICENSE`` setting and adds the contents of that license variable to the article's context
 
+Glossary                  Adds a variable containing definitions extracted from definition lists in articles and pages. This variable is visible to all page templates.
+
 Goodreads activity        Lists books from your Goodreads shelves
 
 GooglePlus comments       Adds GooglePlus comments to Pelican
@@ -121,6 +123,8 @@ ical                      Looks for and parses an ``.ics`` file if it is defined
 Image Process             Automates the processing of images based on their class attributes
 
 Interlinks                Lets you add frequently used URLs to your markup using short keywords
+
+Jinja2 Content            Allows the use of Jinja2 template code in articles, including ``include`` and ``import`` statements. Replacement for pelican-jinja2content.
 
 Just table                Easily create tables in articles
 
@@ -190,8 +194,6 @@ Pelican Vimeo             Enables you to embed Vimeo videos in your pages and ar
 
 Pelican YouTube           Enables you to embed YouTube videos in your pages and articles
 
-Pelican Yuicompressor     Minify CSS and JS files on building step
-
 pelicanfly                Lets you type things like ``i ♥ :fa-coffee:`` in your Markdown documents and have it come out as little Font Awesome icons in the browser
 
 Photos                    Add a photo or a gallery of photos to an article, or include photos in the body text. Resize photos as needed.
@@ -255,6 +257,8 @@ txt2tags_reader           Reader that renders txt2tags markup in content
 Video Privacy Enhancer    Increases user privacy by stopping YouTube, Google, et al from placing cookies via embedded video
 
 W3C validate              Submits generated HTML content to the W3C Markup Validation Service
+
+Yuicompressor             Minify CSS and JS files on building step
 ========================  ===========================================================
 
 __ https://ace.c9.io
