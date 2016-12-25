@@ -53,6 +53,7 @@ try:
 except ImportError as e:
     PelicanMathJaxExtension = None
 
+
 def process_settings(pelicanobj):
     """Sets user specified MathJax settings (see README for more details)"""
 
@@ -167,10 +168,9 @@ def process_settings(pelicanobj):
 
         if key == 'responsive' and isinstance(value, bool):
             mathjax_settings[key] = 'true' if value else 'false'
-        
+
         # if key == 'force_tls' and isinstance(value, bool):
         #     mathjax_settings[key] = 'true' if value else 'false'
-        
         if key == 'responsive_break' and isinstance(value, int):
             mathjax_settings[key] = str(value)
 
@@ -198,7 +198,7 @@ def process_settings(pelicanobj):
                 value = 'default'
 
             mathjax_settings[key] = value
-        
+
         # Full validation of the macros dict would be tedious; It needs
         # to be a dictionary with string keys and string or
         # list-of-string-and-single-digit-integer values
@@ -208,8 +208,7 @@ def process_settings(pelicanobj):
         # we rely on those advanced users to use their brains.
         if key == 'macros' and isinstance(value, dict):
             mathjax_settings[key] = value
-            #More natural for the template, json.dumps(value)
-        
+            # More natural for the template, json.dumps(value)
 
     return mathjax_settings
 
@@ -354,7 +353,10 @@ def process_rst_and_summaries(content_generators):
 
     for generator in content_generators:
         if isinstance(generator, generators.ArticlesGenerator):
-            for article in generator.articles + generator.translations:
+            for article in (
+                    generator.articles +
+                    generator.translations +
+                    generator.drafts):
                 rst_add_mathjax(article)
                 #optionally fix truncated formulae in summaries.
                 if process_summary.mathjax_script is not None:

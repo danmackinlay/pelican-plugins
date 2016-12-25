@@ -21,19 +21,19 @@
         displayIndent: indent,
         showMathMenu: {{show_menu|json}},
         messageStyle: {{message_style|json}},
-        tex2jax: { 
-            inlineMath: [ ['\\(','\\)'] ], 
+        tex2jax: {
+            inlineMath: [ ['\\(','\\)'] ],
             displayMath: [ ['$$','$$'] ],
             processEscapes: {{process_escapes|json }},
             preview: {{latex_preview|json}},
-        }, 
-        "HTML-CSS": { 
+        },
+        "HTML-CSS": {
             styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: '{{color}} !important'} },
             linebreaks: {
                 automatic: linebreak,
                 width: '90% container' },
-        }, 
-    }; 
+        },
+    };
     {% if mathjax_font != 'default' %}
     window.MathJax.AuthorInit = function() {
         MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {

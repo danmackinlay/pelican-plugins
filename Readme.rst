@@ -74,6 +74,8 @@ Custom article URLs       Adds support for defining different default URLs for d
 
 Dateish                   Treat arbitrary metadata fields as datetime objects
 
+Dead Links                Manage dead links (website not available, errors such as 403, 404)
+
 Disqus static comments    Adds a disqus_comments property to all articles. Comments are fetched at generation time using disqus API
 
 Encrypt content           Password protect pages and articles
@@ -87,6 +89,8 @@ Feed Summary              Allows article summaries to be used in ATOM and RSS fe
 Figure References         Provides a system to number and references figures
 
 Filetime from Git         Uses Git commit to determine page date
+
+Filetime from Hg          Uses Mercurial commit to determine page date
 
 Footer Insert             Add standardized footer (e.g., author information) at end of every article
 
@@ -198,6 +202,8 @@ pelicanfly                Lets you type things like ``i ♥ :fa-coffee:`` in you
 
 Photos                    Add a photo or a gallery of photos to an article, or include photos in the body text. Resize photos as needed.
 
+permalink                 Enables a kind of permalink using html redirects.
+
 Pin to top                Pin Pelican's article(s) to top "Sticky article"
 
 PlantUML                  Allows you to define UML diagrams directly into rst documents using the great PlantUML tool
@@ -225,6 +231,8 @@ Section number            Adds section numbers for article headers, in the form 
 Series                    Groups related articles into a series
 
 Share post                Creates share URLs of article
+
+Show Source               Place a link to the source text of your posts.
 
 Simple footnotes          Adds footnotes to blog posts
 
