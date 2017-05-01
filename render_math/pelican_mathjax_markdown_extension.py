@@ -177,6 +177,7 @@ class PelicanMathJaxExtension(markdown.Extension):
         # since escape processing will intefere with mathjax.
         # The order in which the displayed and inlined math
         # is registered below matters
+
         md.inlinePatterns.add(
             'mathjax_displayed',
             PelicanMathJaxPattern(

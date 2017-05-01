@@ -31,11 +31,13 @@ the math.  See README for more details.
 """
 
 import os
-import sys
 
 from pelican import signals, generators
 from jinja2 import Environment, PackageLoader
 import json
+
+import logging
+logger = logging.getLogger(__name__)
 
 jinja_env = Environment(
     loader=PackageLoader('render_math', 'templates'),
@@ -51,6 +53,11 @@ except ImportError as e:
 try:
     from . pelican_mathjax_markdown_extension import PelicanMathJaxExtension
 except ImportError as e:
+    logger.warning(
+        '`render_math` failed to load dependency'
+        '`PelicanMathJaxExtension`. '
+        'Mathjax rendering will not be available for markdown.'
+    )
     PelicanMathJaxExtension = None
 
 
@@ -114,7 +121,10 @@ def process_settings(pelicanobj):
     mathjax_settings['message_style'] = 'normal'
 
     # Source for MathJax
-    mathjax_settings['source'] = "'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML'"
+    mathjax_settings['source'] = (
+        "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js"
+        "?config=TeX-AMS-MML_HTMLorMML'"
+    )
 
     # Get the user specified settings
     try:
@@ -190,9 +200,9 @@ def process_settings(pelicanobj):
 
         if key == 'process_summary' and isinstance(value, bool):
             if value and BeautifulSoup is None:
-                print(
-                    "BeautifulSoup4 is needed for summaries to be processed"
-                    " by render_math\n"
+                logger.warn(
+                    "BeautifulSoup4 is needed for summaries to be processed "
+                    "by render_math\n"
                     "Please install it")
                 value = False
 
@@ -269,9 +279,8 @@ def process_summary(article):
             summary = summary_parsed.decode()
 
         article._summary = (
-            "%s"
-            "<script type='text/javascript'>"
-            "%s"
+            "{}<script type='text/javascript'>"
+            "{}"
             "</script>"
         ).format(
             summary,
@@ -298,26 +307,33 @@ def configure_typogrify(pelicanobj, mathjax_settings):
 
         # At this point, we are happy to use Typogrify, meaning
         # it is installed and it is a recent enough version
-        # that can be used to ignore all math math class and script
+        # that can be used to ignore all math
         # Instantiate markdown extension and append it
         # to the current extensions
         pelicanobj.settings['TYPOGRIFY_IGNORE_TAGS'].extend(
-            ['.math', 'script']
-        )
+            ['.math', 'script'])  # ignore math class and script
 
     except (ImportError, TypeError) as e:
         pelicanobj.settings['TYPOGRIFY'] = False  # disable Typogrify
 
         if isinstance(e, ImportError):
-            print("\nTypogrify is not installed, so it is being ignored.\nIf you want to use it, please install via: pip install typogrify\n")
+            logger.warn(
+                "Typogrify is not installed, so it is being ignored.\n"
+                "If you want to use it, please install via\n"
+                "`pip install typogrify`\n")
 
         if isinstance(e, TypeError):
-            print("\nA more recent version of Typogrify is needed for the render_math module.\nPlease upgrade Typogrify to the latest version (anything equal or above version 2.0.7 is okay).\nTypogrify will be turned off due to this reason.\n")
+            logger.warn(
+                "A more recent version of Typogrify is needed "
+                "for the render_math module.\n"
+                "Please upgrade Typogrify to the latest version\n"
+                "(anything equal or above version 2.0.7 is okay).\n"
+                "Typogrify will be turned off due to this reason.\n")
 
 
 def process_mathjax_script(mathjax_settings):
     """
-    Load the mathjax script template from file, and render.
+    Load the mathjax script template from file, and render with the settings
     """
 
     # Read the mathjax javascript template from file
@@ -350,10 +366,14 @@ def mathjax_for_markdown(pelicanobj, mathjax_script, mathjax_settings):
             ).append(
                 PelicanMathJaxExtension(config)
             )
-    except:
-        sys.excepthook(*sys.exc_info())
-        sys.stderr.write("\nError - the pelican mathjax markdown extension failed to configure. MathJax is non-functional.\n")
-        sys.stderr.flush()
+
+    except Exception as e:
+        logger.error(
+            "Error - the pelican mathjax markdown extension failed "
+            "to configure.\n"
+            "MathJax is non-functional.\n"
+            "{!r}".format(e)
+        )
 
 
 def mathjax_for_rst(pelicanobj, mathjax_script):
