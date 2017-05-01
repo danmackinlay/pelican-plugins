@@ -155,7 +155,8 @@ def process_settings(pelicanobj):
                     'process_escapes',  'linebreak_automatic',
                     'responsive'
                 ):
-            mathjax_settings[key] = bool(value)
+            value = bool(value)
+            mathjax_settings[key] = 'true' if value else 'false'
 
         elif key == 'message_style':
             mathjax_settings[key] = value if value is not None else 'none'
