@@ -147,16 +147,21 @@ def process_settings(pelicanobj):
                         key, value
                     )
                 )
-        elif key in ('indent', 'source', 'latex_preview', 'color'):
+        elif key in (
+                'indent',
+                'source',
+                'latex_preview',
+                'color',
+                'responsive_break'):
             mathjax_settings[key] = value
 
         elif key in (
-                    'show_menu', 'auto_insert',
-                    'process_escapes',  'linebreak_automatic',
-                    'responsive'
-                ):
-            value = bool(value)
-            mathjax_settings[key] = 'true' if value else 'false'
+                'show_menu',
+                'auto_insert',
+                'process_escapes',
+                'linebreak_automatic',
+                'responsive'):
+            mathjax_settings[key] = 'true' if bool(value) else 'false'
 
         elif key == 'message_style':
             mathjax_settings[key] = value if value is not None else 'none'
@@ -212,9 +217,6 @@ def process_settings(pelicanobj):
 
             mathjax_settings[key] = value
 
-        elif key == 'responsive_break':
-            mathjax_settings[key] = str(value)
-
         elif key == 'tex_extensions':
             mathjax_settings[key] = value + [
                 'AMSmath.js',
@@ -228,8 +230,7 @@ def process_settings(pelicanobj):
                 sanserif='SansSerif',
                 fraktur='Fraktur',
                 typewriter='Typewriter',
-            ).get(value, 'default')
-            value = value.lower()
+            ).get(value.lower(), 'default')
             mathjax_settings[key] = value
 
         # Full validation of the macros dict would be tedious; It needs
@@ -241,7 +242,7 @@ def process_settings(pelicanobj):
         # we rely on those advanced users to use their brains.
         elif key == 'macros':
             mathjax_settings[key] = value
-            # More natural for the template, json.dumps(value)
+            # More natural for the template woudl be json.dumps(value)
 
         else:
             logger.warn(
