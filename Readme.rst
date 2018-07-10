@@ -72,6 +72,8 @@ Creole reader             Allows you to write your posts using the wikicreole sy
 
 Custom article URLs       Adds support for defining different default URLs for different categories
 
+CTags generator           Generates a "tags" file following the CTags in the "content/" directory, to provide autocompletion for code editors that support it.
+
 Dateish                   Treat arbitrary metadata fields as datetime objects
 
 Dead Links                Manage dead links (website not available, errors such as 403, 404)
@@ -83,8 +85,6 @@ Encrypt content           Password protect pages and articles
 Events                    Add event start, duration, and location info to post metadata to generate an iCalendar file
 
 Extract table of content  Extracts table of contents (ToC) from ``article.content``
-
-Feed Summary              Allows article summaries to be used in ATOM and RSS feeds instead of the entire article
 
 Figure References         Provides a system to number and references figures
 
@@ -99,6 +99,8 @@ GA Page View              Display Google Analytics page views on individual arti
 Gallery                   Allows an article to contain an album of pictures
 
 Gist directive            This plugin adds a ``gist`` reStructuredText directive.
+
+GitHub wiki               Converts a flat github wiki into a structured read only wiki on your site
 
 GitHub activity           On the template side, you just have to iterate over the ``github_activity`` variable
 
@@ -130,7 +132,9 @@ Interlinks                Lets you add frequently used URLs to your markup using
 
 Jinja2 Content            Allows the use of Jinja2 template code in articles, including ``include`` and ``import`` statements. Replacement for pelican-jinja2content.
 
-Just table                Easily create tables in articles
+JPEG Reader               Create image gallery pages based on content of JPEG metadata
+
+Just table                Allows you to easily create and manage tables. You can embed the tables into posts with a simple way.
 
 Libravatar                Allows inclusion of user profile pictures from libravatar.org
 
@@ -172,6 +176,8 @@ Pelican Cite              Produces inline citations and a bibliography in articl
 
 Pelican Comment System    Allows you to add static comments to your articles
 
+pelican-ert               Allows you to add estimated reading time of an article
+
 Pelican-flickr            Brings your Flickr photos & sets into your static website
 
 Pelican Genealogy         Add surnames and people so metadata and context can be accessed from within a theme to provide surname and person pages
@@ -186,11 +192,15 @@ Pelican Jinja2Content     Allows the use of Jinja2 template code in articles, in
 
 Pelican Link Class        Set class attribute of ``<a>`` elements according to whether the link is external or internal
 
+Pelican Meetup Info       Include your Meetup.com group and event information on generated pages and articles
+
 Pelican Page Hierarchy    Creates a URL hierarchy for pages that matches the filesystem hierarchy of their sources
 
 Pelican Page Order        Adds a ``page_order`` attribute to all pages if one is not defined.
 
 Pelican Themes Generator  Generates theme screenshots from the Pelican Themes repository
+
+pelican-rdf                Allows the processing of .rdf vocabularies, and the generation of a lightweight documentation.
 
 pelican-toc               Generates a Table of Contents and make it available to the theme via article.toc
 
@@ -215,6 +225,8 @@ Post statistics           Calculates various statistics about a post and store t
 Random article            Generates a html file which redirect to a random article
 
 Read More link            Inserts an inline "read more" or "continue" link into the last html element of the object summary
+
+Readtime                  Adds article estimated read time calculator to the site, in the form of '<n> minutes'. 
 
 Related posts             Adds the ``related_posts`` variable to the article's context
 
@@ -261,6 +273,8 @@ Touch                     Does a touch on your generated files using the date me
 Twitter Bootstrap         Defines some rst directive that enable a clean usage of the twitter bootstrap CSS and Javascript components
 
 txt2tags_reader           Reader that renders txt2tags markup in content
+
+Unity WebGL               Easily embed Unity3d games into posts and pages
 
 Video Privacy Enhancer    Increases user privacy by stopping YouTube, Google, et al from placing cookies via embedded video
 
